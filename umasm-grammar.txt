@@ -1,0 +1,39 @@
+  <comment> ::= from # or // to end-of-line
+ <reserved> ::= if | m | goto | map | segment | nand | xor | string
+             |  unmap | input | output | in | program | using
+             |  off | here | halt | words | push | pop | on | off | stack
+    <ident> ::= identifier as in C, except <reserved> or <reg>
+    <label> ::= <ident>
+      <reg> ::= rNN, where NN is any decimal number
+        <k> ::= <hex-literal> | <decimal-literal> | <character-literal>
+   <lvalue> ::= <reg> | m[<reg>][<rvalue>]
+   <rvalue> ::= <reg> | m[<reg>][<rvalue>]
+             |  <k> | <label> | <label> + <k> | <label> - <k>
+    <relop> ::= != | == | <s | >s | <=s | >=s
+    <binop> ::= + | - | * | / | nand | & | '|' | xor | mod
+     <unop> ::= - | ~
+    <instr> ::= <lvalue> := <rvalue>
+             |  <lvalue> := <rvalue> <binop> <rvalue>
+             |  <lvalue> := <unop> <rvalue>
+             |  <lvalue> := input()
+             |  <lvalue> := map segment (<rvalue> words)
+             |  <lvalue> := map segment (string <string-literal>)
+             |  unmap m[<reg>]
+             |  output <rvalue>
+             |  output <string-literal>
+             |  goto <rvalue> [linking <reg>]
+             |  if (<rvalue> <relop> <rvalue>) goto <rvalue>
+             |  if (<rvalue> <relop> <rvalue>) <lvalue> := <rvalue>
+             |  push  <rvalue> on   stack <reg>
+             |  pop  [<lvalue> off] stack <reg>
+             |  halt
+             |  goto *<reg> in program m[<reg>]
+<directive> ::= .section <ident>
+             |  .data <label> [(+|-) <k>]
+             |  .data <k>
+             |  .space <k>
+             |  .string <string-literal>
+             |  .zero <reg> | .zero off              // identify zero register
+             |  .temps <reg> {, <reg>} | .temps off  // temporary regs
+     <line> ::= {<label>:} [<instr> [using <reg> {, <reg>}] | <directive>]
+  <program> ::= {<line> (<comment> | newline | ;)}

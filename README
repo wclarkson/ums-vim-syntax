@@ -1,0 +1,5 @@
+Installation instructions:
+- copy ums.vim to the ~/.vim/syntax (you may need to create syntax)
+- add the following lines to your .vimrc:
+    filetype on
+    au BufNewFile,BufRead *.ums set filetype=ums
