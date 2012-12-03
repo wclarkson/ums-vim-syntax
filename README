@@ -1,4 +1,5 @@
 Installation instructions:
+Run ./install.sh, or to install manually:
 - copy ums.vim to the ~/.vim/syntax (you may need to create syntax)
 - add the following lines to your .vimrc:
     filetype on
