@@ -11,14 +11,14 @@ syn keyword umKeyword   if goto map segment nand xor
 syn keyword umKeyword   unmap input output in program
 syn keyword umKeyword   off here halt words push pop
 syn keyword umKeyword   on stack
+syn keyword umRegister  r0 r1 r2 r3 r4 r5 r6 r7
 
 " Matches
 syn match   umComment   /\/\/.*$/
 syn match   umComment   /#.*$/
-syn match   umNumber    /[0-9]+/
-syn match   umNumber    /0x[0-9]+/
-syn match   umRegister  /r[0-7]/
-syn match   umLabel     /[a-z]+?:/
+syn match   umNumber    /\d/
+syn match   umNumber    /0x\d/
+syn match   umLabel     /\a\+:/
 syn match   umDir       ".section"
 syn match   umDir       ".data"
 syn match   umDir       ".space"
@@ -28,12 +28,15 @@ syn match   umDir       ".temps"
 
 
 " Regions
+syn region umString     start=+"+   skip=+\\"+  end=+"+
 
+" Highlighting
 let b:current_syntax = "ums"
 
-hi def link umKeyword   Statement
-hi def link umComment   Comment
-hi def link umRegister  Keyword
-hi def link umLabel     Comment
-hi def link umDir       Identifier
-hi def link umNumber    Number
+hi link umKeyword   Statement
+hi link umComment   Comment
+hi link umRegister  Type
+hi link umLabel     Constant
+hi link umDir       Preproc
+hi link umNumber    Number
+hi link umString    String
