@@ -19,12 +19,12 @@ syn match   umComment   /#.*$/
 syn match   umNumber    /\d/
 syn match   umNumber    /0x\d/
 syn match   umLabel     /\S\+:/
-syn match   umDir       ".section"
-syn match   umDir       ".data"
-syn match   umDir       ".space"
-syn match   umDir       ".string"
-syn match   umDir       ".zero"
-syn match   umDir       ".temps"
+syn match   umDir       "\.section"
+syn match   umDir       "\.data"
+syn match   umDir       "\.space"
+syn match   umDir       "\.string"
+syn match   umDir       "\.zero"
+syn match   umDir       "\.temps"
 
 
 " Regions
