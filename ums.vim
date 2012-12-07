@@ -17,7 +17,7 @@ syn keyword umRegister  r0 r1 r2 r3 r4 r5 r6 r7
 syn match   umComment   /\/\/.*$/
 syn match   umComment   /#.*$/
 syn match   umNumber    /\d/
-syn match   umNumber    /0x\d/
+syn match   umNumber    /0x[A-Fa-f0-9]\+/
 syn match   umLabel     /\S\+:/
 syn match   umDir       "\.section"
 syn match   umDir       "\.data"
